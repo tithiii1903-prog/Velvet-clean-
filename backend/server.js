@@ -26,13 +26,15 @@ mongoose
 app.use("/api/orders", orderRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/auth", authRoutes);
-const distPath = path.join(__dirname, "../frontend/dist");
 
+// Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/api/health", (req, res) => {
   res.json({ status: "ok", message: "Laundry Server is running" });
 });
+
+// Catch-all route to serve the frontend index.html
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
