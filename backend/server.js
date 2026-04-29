@@ -20,8 +20,23 @@ const MONGODB_URI =
 
 mongoose
   .connect(MONGODB_URI)
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.error("MongoDB connection error:", err));
+  .then(() => {
+    console.log("SUCCESS: Connected to MongoDB Atlas");
+    seedAdmin(); // Ensure seeding runs after connection
+  })
+  .catch((err) => {
+    console.error("CRITICAL: MongoDB connection error:", err);
+  });
+
+// Debug endpoint to check status
+app.get("/api/debug-status", (req, res) => {
+  res.json({
+    mongodb: mongoose.connection.readyState === 1 ? "connected" : "disconnected",
+    port: PORT,
+    env_uri_present: !!process.env.MONGODB_URI,
+    env_jwt_present: !!process.env.JWT_SECRET
+  });
+});
 
 app.use("/api/orders", orderRoutes);
 app.use("/api/dashboard", dashboardRoutes);
