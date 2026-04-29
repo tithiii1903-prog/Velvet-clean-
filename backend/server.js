@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-
+const path = require("path");
 const orderRoutes = require('./routes/orders');
 const dashboardRoutes = require('./routes/dashboard');
 const authRoutes = require('./routes/auth');
@@ -25,10 +25,17 @@ mongoose.connect(MONGODB_URI)
 app.use('/api/orders', orderRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/auth', authRoutes);
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
 // Health check route
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Laundry Server is running' });
+});
+app.get("/", (req, res) => {
+  res.send("Velvet Clean API is running 🚀");
+});
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 });
 
 // Global error handler
@@ -40,3 +47,4 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
