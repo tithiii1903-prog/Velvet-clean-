@@ -28,13 +28,13 @@ app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/auth", authRoutes);
 const distPath = path.join(__dirname, "../frontend/dist");
 
-app.use(express.static(distPath));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/api/health", (req, res) => {
   res.json({ status: "ok", message: "Laundry Server is running" });
 });
 app.get("*", (req, res) => {
-  res.sendFile(path.join(distPath, "index.html"));
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 app.use((err, req, res, next) => {
