@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-cabernet min-h-screen text-milk antialiased font-sans;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-milk/10 backdrop-blur-md rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-milk/10 transition-all duration-300 hover:bg-milk/15 hover:border-milk/20 hover:shadow-[0_8px_30px_rgb(0,0,0,0.2)];
+  }
+  .input-field {
+    @apply w-full px-4 py-2 rounded-xl border border-milk/20 bg-milk/10 text-milk placeholder-milk/50 focus:bg-milk/20 focus:outline-none focus:ring-2 focus:ring-milk/50 transition-all;
+  }
+  .btn-primary {
+    @apply px-6 py-2 rounded-xl bg-milk hover:bg-milk/90 text-sage font-bold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5;
+  }
+  .btn-secondary {
+    @apply px-6 py-2 rounded-xl bg-milk/10 hover:bg-milk/20 backdrop-blur-sm text-milk font-medium transition-all duration-300 shadow-sm border border-milk/20 hover:-translate-y-0.5;
+  }
+}
