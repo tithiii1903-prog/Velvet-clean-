@@ -3,10 +3,21 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require("path");
+const fs = require("fs");
 const orderRoutes = require('./routes/orders');
 const dashboardRoutes = require('./routes/dashboard');
 const authRoutes = require('./routes/auth');
+const distPath = path.join(__dirname, "../frontend/dist");
 
+if (fs.existsSync(distPath)) {
+  app.use(express.static(distPath));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(distPath, "index.html"));
+  });
+} else {
+  console.log("⚠️ dist folder not found");
+}
 const app = express();
 const PORT = process.env.PORT || 5000;
 
