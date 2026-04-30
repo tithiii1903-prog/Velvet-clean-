@@ -28,7 +28,7 @@ function GlassDropdown({ value, options, onChange, containerClassName = '', butt
       </div>
       
       {isOpen && (
-        <div className={`absolute z-50 mt-2 rounded-xl bg-milk/80 backdrop-blur-2xl border border-milk/50 shadow-2xl overflow-hidden min-w-[170px] ${menuClassName}`}>
+        <div className={`absolute z-50 mt-2 rounded-xl text-cabernet bg-milk/80 backdrop-blur-2xl border border-milk/50 shadow-2xl overflow-hidden min-w-[170px] ${menuClassName}`}>
           {options.map((opt) => (
             <div
               key={opt.value}
