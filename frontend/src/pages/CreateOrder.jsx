@@ -60,7 +60,7 @@ function CreateOrder() {
 
     setLoading(true);
     try {
-      await api.post('/orders', formData);
+      await api.post('orders', formData);
       toast.success('Order created successfully!');
       navigate('/orders');
     } catch (error) {

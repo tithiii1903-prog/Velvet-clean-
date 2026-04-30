@@ -13,8 +13,6 @@ const seedAdmin = async () => {
     console.log('Default admin seeded: admin / password123');
   }
 };
-seedAdmin();
-
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
   try {
@@ -38,4 +36,4 @@ router.post('/login', async (req, res) => {
   }
 });
 
-module.exports = router;
+module.exports = { router, seedAdmin };

@@ -13,7 +13,7 @@ function History() {
   const fetchHistory = async () => {
     setLoading(true);
     try {
-      const response = await api.get('/orders', { 
+      const response = await api.get('orders', { 
         params: { ...filters, isHistory: 'true' } 
       });
       setOrders(response.data);
@@ -31,7 +31,7 @@ function History() {
   const handleDeleteOrder = async (orderId) => {
     if (window.confirm('Are you sure you want to delete this historical record?')) {
       try {
-        await api.delete(`/orders/${orderId}`);
+        await api.delete(`orders/${orderId}`);
         toast.success('Record deleted successfully');
         fetchHistory();
       } catch (error) {

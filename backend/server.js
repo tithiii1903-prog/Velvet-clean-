@@ -6,7 +6,7 @@ const path = require("path");
 
 const orderRoutes = require("./routes/orders");
 const dashboardRoutes = require("./routes/dashboard");
-const authRoutes = require("./routes/auth");
+const { router: authRoutes, seedAdmin } = require("./routes/auth");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -20,7 +20,10 @@ const MONGODB_URI =
 
 mongoose
   .connect(MONGODB_URI)
-  .then(() => console.log("Connected to MongoDB"))
+  .then(() => {
+    console.log("Connected to MongoDB");
+    seedAdmin();
+  })
   .catch((err) => console.error("MongoDB connection error:", err));
 
 app.use("/api/orders", orderRoutes);

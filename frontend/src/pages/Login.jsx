@@ -14,7 +14,7 @@ function Login({ setToken }) {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await api.post('/auth/login', { username, password });
+      const response = await api.post('auth/login', { username, password });
       const { token } = response.data;
       localStorage.setItem('adminToken', token);
       setToken(token);

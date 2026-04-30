@@ -13,8 +13,8 @@ function Dashboard() {
     const fetchData = async () => {
       try {
         const [dashboardRes, ordersRes] = await Promise.all([
-          api.get('/dashboard'),
-          api.get('/orders', { params: { isHistory: 'false' } })
+          api.get('dashboard'),
+          api.get('orders', { params: { isHistory: 'false' } })
         ]);
         setStats(dashboardRes.data);
         setRecentOrders(ordersRes.data.slice(0, 4));

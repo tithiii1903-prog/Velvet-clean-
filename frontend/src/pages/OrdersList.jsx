@@ -16,7 +16,7 @@ function OrdersList() {
   const fetchOrders = async () => {
     setLoading(true);
     try {
-      const response = await api.get('/orders', { params: { ...filters, isHistory: 'false' } });
+      const response = await api.get('orders', { params: { ...filters, isHistory: 'false' } });
       setOrders(response.data);
     } catch (error) {
       toast.error('Failed to fetch orders');
@@ -31,7 +31,7 @@ function OrdersList() {
 
   const handleStatusChange = async (orderId, newStatus) => {
     try {
-      await api.put(`/orders/${orderId}/status`, { status: newStatus });
+      await api.put(`orders/${orderId}/status`, { status: newStatus });
       toast.success('Order status updated');
       fetchOrders();
     } catch (error) {
@@ -42,7 +42,7 @@ function OrdersList() {
   const handleDeleteOrder = async (orderId) => {
     if (window.confirm('Are you sure you want to delete this order?')) {
       try {
-        await api.delete(`/orders/${orderId}`);
+        await api.delete(`orders/${orderId}`);
         toast.success('Order deleted successfully');
         fetchOrders();
       } catch (error) {
