@@ -30,6 +30,11 @@ app.use("/api/orders", orderRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/auth", authRoutes);
 
+// Fallback routes for older frontend builds or direct calls
+app.use("/orders", orderRoutes);
+app.use("/dashboard", dashboardRoutes);
+app.use("/auth", authRoutes);
+
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, "public")));
 
