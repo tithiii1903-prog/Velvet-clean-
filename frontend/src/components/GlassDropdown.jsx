@@ -32,8 +32,8 @@ function GlassDropdown({ value, options, onChange, containerClassName = '', butt
           {options.map((opt) => (
             <div
               key={opt.value}
-              className={`px-4 py-2 cursor-pointer transition-colors text-cabernet ${
-                value === opt.value ? 'bg-milk/30 font-bold text-milk' : 'text-milk hover:bg-milk/20'
+              className={`px-4 py-2 cursor-pointer transition-colors ${
+                value === opt.value ? 'bg-milk/30 font-bold text-cabernet' : 'text-cabernet hover:bg-milk/20'
               }`}
               onClick={() => {
                 onChange(opt.value);
