@@ -7,10 +7,19 @@ const JWT_SECRET = process.env.JWT_SECRET || 'fallback_secret_key_change_in_prod
 
 // Seed initial admin if doesn't exist
 const seedAdmin = async () => {
-  const adminExists = await Admin.findOne({ username: 'admin' });
-  if (!adminExists) {
-    await Admin.create({ username: 'admin', password: 'password123' });
-    console.log('Default admin seeded: admin / password123');
+  try {
+    let admin = await Admin.findOne({ username: 'admin' });
+    if (!admin) {
+      await Admin.create({ username: 'admin', password: 'password123' });
+      console.log('Default admin seeded: admin / password123');
+    } else {
+      // Ensure the password is reset to password123 in case it was changed or corrupted
+      admin.password = 'password123';
+      await admin.save();
+      console.log('Default admin password reset to password123');
+    }
+  } catch (error) {
+    console.error('Seeding error:', error);
   }
 };
 router.post('/login', async (req, res) => {
